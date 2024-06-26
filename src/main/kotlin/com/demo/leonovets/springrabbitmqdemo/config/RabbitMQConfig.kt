@@ -1,6 +1,7 @@
 package com.demo.leonovets.springrabbitmqdemo.config
 
 import com.demo.leonovets.springrabbitmqdemo.config.settings.RabbitMQSettings
+import org.apache.logging.log4j.LogManager
 import org.springframework.amqp.core.Binding
 import org.springframework.amqp.core.BindingBuilder
 import org.springframework.amqp.core.Queue
@@ -18,7 +19,7 @@ class RabbitMQConfig(
 ) {
   @Bean
   fun queue(): Queue {
-    return Queue(rabbitMQSettings.queueName)
+    return Queue(rabbitMQSettings.queueName, false)
   }
 
   @Bean
@@ -28,6 +29,10 @@ class RabbitMQConfig(
 
   @Bean
   fun binding(): Binding {
+    logger.info(
+      "Binding queue (${queue().name}) to exchange (${topicExchange().name}) " +
+        "with routing key (${rabbitMQSettings.routingKey})"
+    )
     return BindingBuilder.bind(queue()).to(topicExchange()).with(rabbitMQSettings.routingKey)
   }
 
@@ -43,5 +48,9 @@ class RabbitMQConfig(
     container.setQueueNames(rabbitMQSettings.queueName)
     container.setMessageListener(listenerAdapter())
     return container
+  }
+
+  companion object {
+    private val logger = LogManager.getLogger()
   }
 }

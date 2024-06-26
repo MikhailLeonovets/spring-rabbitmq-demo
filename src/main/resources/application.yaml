@@ -6,9 +6,9 @@ spring:
     password: secret
 demo:
   rabbitmq:
-    queueName: simpleQueue
+    queueName: simpleQueueNext
     topicExchangeName: default-exchange
     routingKey: simple.routing.#
     sender:
       exchange: default-exchange
-      routingKey: simple.routing.kek
+      routingKey: simple.routing.lol.kek
