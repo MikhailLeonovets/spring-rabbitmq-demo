@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: Spring RabbitMQ Demo
+  rabbitmq:
+    username: myuser
+    password: secret
+demo:
+  rabbitmq:
+    queueName: simpleQueue
+    topicExchangeName: default-exchange
+    routingKey: simple.routing.#
+    sender:
+      exchange: default-exchange
+      routingKey: simple.routing.kek
