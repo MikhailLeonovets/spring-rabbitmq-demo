@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 data class RabbitMQSettings(
   var queueName: String? = null,
   var topicExchangeName: String? = null,
-  var routingKey: String? = null,
+  var routingKey: String? = null
 ) {
   @PostConstruct
   fun postConstruct() {

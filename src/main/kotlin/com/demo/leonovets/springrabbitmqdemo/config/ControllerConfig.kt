@@ -11,6 +11,9 @@ class ControllerConfig(
 ) {
   @Bean
   fun rabbitMessageSenderController(rabbitTemplate: RabbitTemplate): RabbitMessageSenderController {
-    return RabbitMessageSenderController(rabbitMessageSenderConfig.simpleSender(rabbitTemplate))
+    return RabbitMessageSenderController(
+      rabbitMessageSenderConfig.simpleSender(rabbitTemplate),
+      rabbitMessageSenderConfig.simpleJpgFileSender(rabbitTemplate)
+    )
   }
 }

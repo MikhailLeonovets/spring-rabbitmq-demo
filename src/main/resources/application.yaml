@@ -6,9 +6,17 @@ spring:
     password: secret
 demo:
   rabbitmq:
-    queueName: simpleQueueNext
-    topicExchangeName: default-exchange
-    routingKey: simple.routing.#
+    queue-name: simpleQueueNext
+    topic-exchange-name: default-exchange
+    routing-key: simple.routing.#
     sender:
       exchange: default-exchange
-      routingKey: simple.routing.lol.kek
+      routing-key: simple.routing.lol.kek
+  file:
+    receiver-directory-path: C:\Programming\demo\spring-rabbit-mq-demo\Spring RabbitMQ Demo\receiver-directory
+    received-file-name: simple-file
+    rabbitmq:
+      fanout-queue-name: simple.fanout.queue.name
+      fanout-topic-exchange-name: simple.topic.exchange.name
+    sender:
+      fanout-sender-exchange: simple.topic.exchange.name
